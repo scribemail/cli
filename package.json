@@ -1,6 +1,6 @@
 {
   "name": "@scribemail/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Scribe on the command line — the full Scribe MCP tool surface as CLI commands, plus a stdio MCP server for local agents.",
   "keywords": [
     "scribe",
