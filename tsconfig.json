@@ -1,0 +1,24 @@
+{
+  // The CLI type-checks against Node only. Files under ../mcp-server/src are
+  // pulled in through the import graph (server.ts -> tools/ -> client.ts), which
+  // is runtime-neutral by design — never add ../mcp-server/src/** to `include`,
+  // or Worker-only files (index.ts, mcp-agent.ts, env.ts) drag in workers-types.
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "lib": ["ES2022"],
+    "moduleResolution": "Bundler",
+    "types": ["node"],
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true
+  },
+  "include": ["src/**/*.ts", "test/**/*.ts", "tsup.config.ts", "vitest.e2e.config.ts"]
+}

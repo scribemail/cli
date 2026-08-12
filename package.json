@@ -1,0 +1,54 @@
+{
+  "name": "@scribemail/cli",
+  "version": "0.1.0",
+  "description": "Scribe on the command line — the full Scribe MCP tool surface as CLI commands, plus a stdio MCP server for local agents.",
+  "keywords": [
+    "scribe",
+    "email-signatures",
+    "cli",
+    "mcp"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scribemail/cli.git"
+  },
+  "type": "module",
+  "bin": {
+    "scribe": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "build:staging": "SCRIBE_BUILD_ENV=staging tsup",
+    "dev": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "prettier --check .",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "vitest run --config vitest.e2e.config.ts",
+    "release": "node scripts/release.mjs",
+    "prepublishOnly": "pnpm typecheck && pnpm build && pnpm test"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "@types/node": "^20.14.0",
+    "commander": "^14.0.0",
+    "prettier": "^3.3.0",
+    "tsup": "^8.3.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0",
+    "zod": "^4.4.3"
+  }
+}

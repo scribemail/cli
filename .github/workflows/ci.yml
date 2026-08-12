@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Cancel superseded runs on the same ref.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # The CLI imports the tool core from ../mcp-server at build time, so the
+      # two repos are laid out as siblings — exactly like a local checkout.
+      - uses: actions/checkout@v4
+        with:
+          path: cli
+
+      # GITHUB_TOKEN is scoped to this repo only; reading the private sibling
+      # needs a fine-grained PAT (contents: read on scribemail/mcp-server)
+      # stored as the MCP_SERVER_CHECKOUT_TOKEN secret.
+      - uses: actions/checkout@v4
+        with:
+          repository: scribemail/mcp-server
+          path: mcp-server
+          token: ${{ secrets.MCP_SERVER_CHECKOUT_TOKEN }}
+
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: cli/package.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: |
+            cli/pnpm-lock.yaml
+            mcp-server/pnpm-lock.yaml
+
+      - name: Install (mcp-server — the imported core resolves its own deps)
+        working-directory: mcp-server
+        run: pnpm install --frozen-lockfile
+
+      - name: Install (cli)
+        working-directory: cli
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        working-directory: cli
+        run: pnpm lint
+
+      - name: Typecheck
+        working-directory: cli
+        run: pnpm typecheck
+
+      - name: Test
+        working-directory: cli
+        run: pnpm test
+
+      - name: Build
+        working-directory: cli
+        run: pnpm build
+
+      - name: E2E (bundled bin)
+        working-directory: cli
+        run: pnpm test:e2e
