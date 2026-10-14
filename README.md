@@ -40,7 +40,7 @@ scribe signatures create --name "Sales" --draft-content @tree.json
 scribe signatures publish --id <uuid>
 scribe teammates list --auto-paginate
 scribe analytics views --start-date 2026-07-01 --end-date 2026-08-01 --group-by signature_template
-scribe docs search "dns setup"
+scribe docs search --query "dns setup"
 ```
 
 - `scribe tools` — every MCP tool name and its CLI command.
@@ -54,18 +54,20 @@ scribe docs search "dns setup"
 
 ## Commands
 
-| Group                                                          | Commands                                                                                        |
-| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `signatures`                                                   | `list` `create` `update` `delete` `publish` `install` `preview` `html` `installations`          |
-| `signatures variants`                                          | `list` `update` `publish` `delete`                                                              |
-| `signatures recipients`                                        | `list` `add` `remove` `set-rules` `add-entities` `remove-entities`                              |
-| `teammates` / `emails` / `smart-fields` / `folders` / `assets` | `list` `create` `update` `delete`                                                               |
-| `campaigns`                                                    | `list` `create` `update` `delete` `preview` `schedule` `pause` `resume`                         |
-| `analytics`                                                    | `views` `clicks` `events` `events-summary`                                                      |
-| `visitors`                                                     | `list` `get` `breakdown`                                                                        |
-| `integrations`                                                 | `list` `entities`                                                                               |
-| top-level                                                      | `workspace` · `billing documents` · `content-schema` · `docs search` · `docs read` · `feedback` |
-| session                                                        | `login` · `logout` · `whoami` · `mcp` · `tools` · `call`                                        |
+| Group                                 | Commands                                                                                                        |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `signatures`                          | `list` `create` `update` `delete` `duplicate` `test-email` `publish` `install` `preview` `html` `installations` |
+| `signatures variants`                 | `list` `update` `publish` `delete`                                                                              |
+| `signatures recipients`               | `list` `add` `remove` `set-rules` `add-entities` `remove-entities`                                              |
+| `teammates`                           | `list` `create` `update` `delete` `sync`                                                                        |
+| `emails`                              | `list` `create` `update` `delete` `install`                                                                     |
+| `smart-fields` / `folders` / `assets` | `list` `create` `update` `delete`                                                                               |
+| `campaigns`                           | `list` `create` `update` `delete` `preview` `schedule` `pause` `resume`                                         |
+| `analytics`                           | `views` `clicks` `events` `events-summary`                                                                      |
+| `visitors`                            | `list` `get` `breakdown`                                                                                        |
+| `integrations`                        | `list` `entities`                                                                                               |
+| top-level                             | `workspace` · `billing documents` · `content-schema` · `docs search` · `docs read` · `feedback`                 |
+| session                               | `login` · `logout` · `whoami` · `mcp` · `tools` · `call`                                                        |
 
 ## Headless / SSH
 

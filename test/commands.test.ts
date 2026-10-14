@@ -56,9 +56,10 @@ describe("generated commands end-to-end", () => {
 
     const dir = mkdtempSync(join(tmpdir(), "scribe-cmd-"));
     const treePath = join(dir, "tree.json");
-    // Minimal block tree that satisfies the content input schema.
+    // Minimal block tree that satisfies the content input schema (block ids are lowercase UUIDs).
+    const rootId = "6f1e8a2c-4b0d-4c8e-9f3a-2d7b5e9c1a4f";
     const tree = {
-      id: "root",
+      id: rootId,
       type: "stack",
       role: null,
       visible: true,
@@ -81,7 +82,7 @@ describe("generated commands end-to-end", () => {
     // The API client nests the payload under its resource key.
     const payload = sentBody.signature as Record<string, unknown>;
     expect(payload.name).toBe("CLI wins");
-    expect(payload.draft_content).toMatchObject({ id: "root", type: "stack" });
+    expect(payload.draft_content).toMatchObject({ id: rootId, type: "stack" });
   });
 
   it("scribe call reaches a tool by MCP name", async () => {

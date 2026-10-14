@@ -19,6 +19,8 @@ export const TOOL_COMMAND_MAP: Readonly<Record<string, readonly string[]>> = {
   create_signature: ["signatures", "create"],
   update_signature: ["signatures", "update"],
   delete_signature: ["signatures", "delete"],
+  duplicate_signature: ["signatures", "duplicate"],
+  send_test_email: ["signatures", "test-email"],
   publish_signature: ["signatures", "publish"],
   install_signature: ["signatures", "install"],
   preview_signature: ["signatures", "preview"],
@@ -44,12 +46,14 @@ export const TOOL_COMMAND_MAP: Readonly<Record<string, readonly string[]>> = {
   create_teammate: ["teammates", "create"],
   update_teammate: ["teammates", "update"],
   delete_teammate: ["teammates", "delete"],
+  sync_teammates: ["teammates", "sync"],
 
   // Emails
   list_emails: ["emails", "list"],
   create_email: ["emails", "create"],
   update_email: ["emails", "update"],
   delete_email: ["emails", "delete"],
+  install_signature_for_email: ["emails", "install"],
 
   // Smart fields
   list_smart_fields: ["smart-fields", "list"],

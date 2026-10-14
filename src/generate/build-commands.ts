@@ -45,14 +45,23 @@ export interface ToolRuntime {
 }
 
 export async function createToolRuntime(deps: CliDeps): Promise<ToolRuntime> {
-  const holder: { ctx?: CommandContext } = {};
-  const placeholderConfig = resolveConfig(undefined);
-  const toolDeps: ToolDeps = {
-    // Tools read deps.config per call (buildClient), so this getter hands them
-    // the invocation's resolved config once preAction has filled the holder.
-    get config() {
-      return holder.ctx?.config ?? placeholderConfig;
+  // Tools read deps.config per call (buildClient), but registerTools copies deps
+  // with an object spread, so a getter would be read once, before preAction.
+  // Hand it one config object instead and update that object in place when
+  // preAction sets the invocation's context.
+  const config = resolveConfig(undefined);
+  let ctx: CommandContext | undefined;
+  const holder = {
+    get ctx() {
+      return ctx;
     },
+    set ctx(value: CommandContext | undefined) {
+      ctx = value;
+      if (value) Object.assign(config, value.config);
+    },
+  };
+  const toolDeps: ToolDeps = {
+    config,
     getToken: async () => (holder.ctx ? holder.ctx.tokens.tokenProvider()() : null),
     userAgent: CLI_USER_AGENT,
     fetchImpl: deps.fetchImpl,

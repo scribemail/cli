@@ -12,7 +12,7 @@ export async function whoamiAction(ctx: CommandContext, opts: WhoamiOptions): Pr
   const tokens = await ctx.tokens.getTokenSet();
   const claims = decodeJwtClaims(tokens.accessToken) ?? {};
 
-  let workspace: { name?: string; plan?: unknown; seat_count?: number } | undefined;
+  let workspace: { name?: string | null; plan?: unknown; seat_count?: number } | undefined;
   let workspaceError: string | undefined;
   try {
     const client = new ScribeClient({
