@@ -1,36 +1,34 @@
 # Changelog
 
-All notable changes to `@scribemail/cli`. The CLI bundles the tool core of the [Scribe MCP server](https://mcp.scribe-mail.com/mcp), so a tool change there reaches the CLI with its next release.
+What changed in each version of the Scribe CLI (`@scribemail/cli`). The CLI has the same tools as the [Scribe MCP server](https://help.scribe-mail.com/en/ai-agents/connect), so changes to those tools are listed here too.
 
 ## 0.2.0 — 2026-10-14
 
-### Added
+### New
 
-- `scribe signatures duplicate`: copy a signature into a new one (its design and its reply/internal variants, assigned to no one) to try a change without touching the original.
-- `scribe signatures test-email`: mail yourself a test of a signature's draft. `--email-id` shows it with a teammate's values.
-- `scribe emails install`: install one email's signatures now, all of them or only `--signature-id`.
-- `scribe teammates sync`: resync the workspace's teammates now instead of waiting for the daily sync.
-- Smart field values on teammates and emails carry `image_url` on image smart fields (the profile picture, for instance).
+- `scribe signatures duplicate`: copy a signature, with its design and its reply and internal versions, to try a change without touching the original. The copy is assigned to no one.
+- `scribe signatures test-email`: send yourself a test of a signature's draft. Add `--email-id` to see it with a teammate's details.
+- `scribe emails install`: install the signatures of one email address now, all of them or only the one given with `--signature-id`.
+- `scribe teammates sync`: sync your teammates from your directory now instead of waiting for the daily sync.
+- Teammates and email addresses now include the picture URL of image smart fields, such as the profile picture (`image_url`).
 
-### Changed
+### Improvements
 
-- Tool descriptions name Zoho Mail next to Google Workspace and Microsoft 365.
-- Block ids in a block tree (`--draft-content`, `--content`) must be lowercase UUIDs. The input schema now says so, so a wrong id fails before the API call.
-- `scribe assets create --file-base64` accepts a `data:` URI, line-wrapped base64 and base64url.
-- `scribe docs search` tries again once when the help center search times out.
-- A sign-in with an email that has no Scribe account now says to sign in with your Scribe login email, instead of pointing at an API key.
-- `scribe mcp` sets every tool's read-only, destructive and idempotent hints explicitly.
-- Bundles `@modelcontextprotocol/sdk` 1.30.0.
+- Zoho Mail is now named next to Google Workspace and Microsoft 365 wherever the tools describe the supported mail providers.
+- Signature content (`--draft-content`, `--content`) must use lowercase UUIDs as block ids. The CLI now checks this before calling the API and says so.
+- `scribe assets create --file-base64` also accepts a `data:` URI and base64 split over several lines.
+- `scribe docs search` tries again once when the help center is slow to answer.
+- If you sign in with an email that has no Scribe account, the error now tells you to sign in with your Scribe login email.
+- `scribe mcp` tells your agent, for each tool, whether it only reads, whether it can change or delete data, and whether it is safe to repeat.
 
-### Fixed
+### Bug fixes
 
-- `scribe workspace` works for a workspace without a name (it failed with a schema error).
-- The README's `docs search` example passes `--query`.
+- `scribe workspace` no longer fails for a workspace without a name.
 
 ## 0.1.1 — 2026-08-12
 
-First release published by CI. Same code as 0.1.0.
+No change for users.
 
 ## 0.1.0 — 2026-08-12
 
-First release: browser sign-in (WorkOS AuthKit), `scribe mcp` (a stdio MCP server with the same tools as the remote server), and a command for every Scribe MCP tool.
+First version: sign in with your browser, manage your workspace from the terminal with a command for each Scribe tool, and connect a local AI agent with `scribe mcp`.
