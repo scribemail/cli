@@ -1,6 +1,10 @@
-# @scribemail/cli
+# Scribe Mail CLI
 
-Scribe ([scribe-mail.com](https://www.scribe-mail.com)) on the command line: manage your workspace's email signatures, teammates, smart fields, folders, assets, marketing campaigns, and analytics, or serve the whole tool surface to a **local AI agent over MCP**.
+**[Email signatures finally simple and measurable. Built for teams & AI agents.](https://www.scribe-mail.com)**
+
+Install consistent signatures company-wide in under a day. IT sets up once. Marketing takes over. AI agents assist. No employee installation. 12% average CTR on signature banners. Conversion tracking from click to revenue.
+
+`@scribemail/cli` is the official [Scribe](https://www.scribe-mail.com) command line: manage your workspace's email signatures, teammates, smart fields, folders, assets, marketing campaigns, and analytics, or serve the whole tool surface to a **local AI agent over MCP**.
 
 The CLI ships the exact same 60+ tools as the [Scribe remote MCP server](https://mcp.scribe-mail.com/mcp), generated from the same code, so the two never drift.
 
