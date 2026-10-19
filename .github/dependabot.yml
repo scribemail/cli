@@ -1,0 +1,12 @@
+# Keeps the GitHub Actions pins current.
+#
+# Every workflow pins its actions to a full commit SHA with a trailing `# vX.Y.Z`
+# comment, so a moved tag on a compromised action repository cannot change what
+# runs next to our secrets (the release job holds npm publish rights through
+# OIDC). Dependabot bumps the SHA and the comment together.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
