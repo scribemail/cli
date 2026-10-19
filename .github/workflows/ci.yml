@@ -20,14 +20,14 @@ jobs:
     steps:
       # The CLI imports the tool core from ../mcp-server at build time, so the
       # two repos are laid out as siblings — exactly like a local checkout.
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           path: cli
 
       # GITHUB_TOKEN is scoped to this repo only; reading the private sibling
       # needs a fine-grained PAT (contents: read on scribemail/mcp-server)
       # stored as the MCP_SERVER_CHECKOUT_TOKEN secret.
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: scribemail/mcp-server
           path: mcp-server
