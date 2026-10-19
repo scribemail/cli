@@ -80,7 +80,11 @@ scribe login --no-browser   # then open the printed URL locally
 
 ## Contributing
 
-This repo builds against a sibling checkout of `scribemail/mcp-server` (the tool core is imported from `../mcp-server/src` and bundled at build time):
+Bug reports and feature requests are welcome in [issues](https://github.com/scribemail/cli/issues).
+
+The tools are defined in Scribe's MCP server, which is a private repository: this repo imports the tool core from a sibling `../mcp-server` checkout and bundles it at build time. You can read everything here, but building, testing, and CI need access to `scribemail/mcp-server`, so pull requests from outside the Scribe team can't pass CI. Open an issue instead and we'll take it from there.
+
+For the Scribe team, with both repos side by side:
 
 ```bash
 git clone git@github.com:scribemail/mcp-server.git
